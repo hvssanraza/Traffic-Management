@@ -243,7 +243,7 @@ void searchMenu()
         cout << "Invalid choice. Returning to the dashboard." << endl;
     }
 }
-
+//Editted by Abdullah
 void searchVehicle()
 {
     int choice;
