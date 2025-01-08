@@ -11,7 +11,8 @@ const int max_veh = 100;
 const int max_violations = 100;
 const int max_intersections = 10;
 
-struct Vehicle {
+struct Vehicle
+{
     int id;
     string owner;
     string type;
@@ -19,7 +20,8 @@ struct Vehicle {
     string registrationDate;
 };
 
-struct Violation {
+struct Violation
+{
     int id;
     int vehicleId;
     string type;
@@ -32,7 +34,12 @@ Violation violations[max_violations];
 int vehicleCount = 0;
 int violationCount = 0;
 
-enum TrafficLightState { RED, YELLOW, GREEN };
+enum TrafficLightState
+{
+    RED,
+    YELLOW,
+    GREEN
+};
 TrafficLightState intersections[max_intersections];
 int timers[max_intersections];
 
@@ -53,17 +60,20 @@ void loadVehiclesFromFile();
 void saveViolationsToFile();
 void loadViolationsFromFile();
 
-int main() {
+int main()
+{
     loadVehiclesFromFile();
     loadViolationsFromFile();
     adminDashboard();
     return 0;
 }
 
-void adminDashboard() {
+void adminDashboard()
+{
     int choice;
 
-    while (true) {
+    while (true)
+    {
         cout << "--- Admin Dashboard ---" << endl;
         cout << "1. Manage Traffic Lights" << endl;
         cout << "2. Register Vehicles" << endl;
@@ -76,46 +86,71 @@ void adminDashboard() {
         cout << "Enter your choice: ";
         cin >> choice;
 
-        switch (choice) {
-            case 1: manageTrafficLights(); break;
-            case 2: registerVehicle(); break;
-            case 3: trackViolations(); break;
-            case 4: viewTrafficReports(); break;
-            case 5: emergencyVehicleAssistance(); break;
-            case 6: realTimeTrafficMonitoring(); break;
-            case 7: searchMenu(); break;
-            case 8:
-                saveVehiclesToFile();
-                saveViolationsToFile();
-                cout << "Exiting program..." << endl;
-                return;
-            default: cout << "Invalid choice. Try again." << endl;
+        switch (choice)
+        {
+        case 1:
+            manageTrafficLights();
+            break;
+        case 2:
+            registerVehicle();
+            break;
+        case 3:
+            trackViolations();
+            break;
+        case 4:
+            viewTrafficReports();
+            break;
+        case 5:
+            emergencyVehicleAssistance();
+            break;
+        case 6:
+            realTimeTrafficMonitoring();
+            break;
+        case 7:
+            searchMenu();
+            break;
+        case 8:
+            saveVehiclesToFile();
+            saveViolationsToFile();
+            cout << "Exiting program..." << endl;
+            return;
+        default:
+            cout << "Invalid choice. Try again." << endl;
         }
     }
 }
 
-void manageTrafficLights() {
+void manageTrafficLights()
+{
     cout << "--- Traffic Light Management ---" << endl;
 
-    for (int i = 0; i < max_intersections; i++) {
+    for (int i = 0; i < max_intersections; i++)
+    {
         intersections[i] = RED;
         timers[i] = 10;
     }
 
     cout << "Simulating traffic light states..." << endl;
 
-    while (true) {
-        for (int i = 0; i < max_intersections; i++) {
-            if (intersections[i] == RED) {
+    while (true)
+    {
+        for (int i = 0; i < max_intersections; i++)
+        {
+            if (intersections[i] == RED)
+            {
                 intersections[i] = GREEN;
-            } else if (intersections[i] == GREEN) {
+            }
+            else if (intersections[i] == GREEN)
+            {
                 intersections[i] = YELLOW;
-            } else if (intersections[i] == YELLOW) {
+            }
+            else if (intersections[i] == YELLOW)
+            {
                 intersections[i] = RED;
             }
 
-            string state = (intersections[i] == RED) ? "RED" :
-                           (intersections[i] == GREEN) ? "GREEN" : "YELLOW";
+            string state = (intersections[i] == RED) ? "RED" : (intersections[i] == GREEN) ? "GREEN"
+                                                                                           : "YELLOW";
 
             cout << "Intersection " << i + 1 << ": " << state << endl;
         }
@@ -124,12 +159,15 @@ void manageTrafficLights() {
         cout << "Press 0 to stop simulation: ";
         int stop;
         cin >> stop;
-        if (stop == 0) break;
+        if (stop == 0)
+            break;
     }
 }
-
-void registerVehicle() {
-    if (vehicleCount >= max_veh) {
+//Coded by Talha
+void registerVehicle()
+{
+    if (vehicleCount >= max_veh)
+    {
         cout << "Vehicle storage is full!" << endl;
         return;
     }
@@ -151,18 +189,22 @@ void registerVehicle() {
     cout << "Vehicle registered successfully!" << endl;
 }
 
-void realTimeTrafficMonitoring() {
+void realTimeTrafficMonitoring()
+{
     cout << "--- Live Traffic Monitoring ---" << endl;
 
-    while (true) {
-        for (int i = 0; i < max_intersections; i++) {
+    while (true)
+    {
+        for (int i = 0; i < max_intersections; i++)
+        {
             trafficDensity[i] = rand() % 3;
         }
 
         cout << "Current Traffic Status:" << endl;
-        for (int i = 0; i < max_intersections; i++) {
-            string density = (trafficDensity[i] == 0) ? "Low" :
-                             (trafficDensity[i] == 1) ? "Moderate" : "High";
+        for (int i = 0; i < max_intersections; i++)
+        {
+            string density = (trafficDensity[i] == 0) ? "Low" : (trafficDensity[i] == 1) ? "Moderate"
+                                                                                         : "High";
             cout << "Intersection " << i + 1 << ": " << density << endl;
         }
 
@@ -171,11 +213,13 @@ void realTimeTrafficMonitoring() {
         cout << "Press 0 to stop live monitoring: ";
         int stop;
         cin >> stop;
-        if (stop == 0) break;
+        if (stop == 0)
+            break;
     }
 }
 
-void searchMenu() {
+void searchMenu()
+{
     int choice;
     cout << "--- Search Vehicles ---" << endl;
     cout << "1. Search by Vehicle ID" << endl;
@@ -184,15 +228,24 @@ void searchMenu() {
     cout << "Enter your choice: ";
     cin >> choice;
 
-    switch (choice) {
-        case 1: searchVehicle(); break;
-        case 2: searchVehicle(); break;
-        case 3: searchVehicle(); break;
-        default: cout << "Invalid choice. Returning to the dashboard." << endl;
+    switch (choice)
+    {
+    case 1:
+        searchVehicle();
+        break;
+    case 2:
+        searchVehicle();
+        break;
+    case 3:
+        searchVehicle();
+        break;
+    default:
+        cout << "Invalid choice. Returning to the dashboard." << endl;
     }
 }
 
-void searchVehicle() {
+void searchVehicle()
+{
     int choice;
     cout << "Search by: " << endl;
     cout << "1. Vehicle ID" << endl;
@@ -202,14 +255,17 @@ void searchVehicle() {
     cin >> choice;
     cin.ignore();
 
-    if (choice == 1) {
+    if (choice == 1)
+    {
         int searchID;
         cout << "Enter Vehicle ID: ";
         cin >> searchID;
 
         bool found = false;
-        for (int i = 0; i < vehicleCount; i++) {
-            if (vehicles[i].id == searchID) {
+        for (int i = 0; i < vehicleCount; i++)
+        {
+            if (vehicles[i].id == searchID)
+            {
                 cout << "Vehicle Found: " << endl;
                 cout << "ID: " << vehicles[i].id << endl;
                 cout << "Owner: " << vehicles[i].owner << endl;
@@ -220,16 +276,20 @@ void searchVehicle() {
                 break;
             }
         }
-        if (!found) cout << "Vehicle not found." << endl;
+        if (!found)
+            cout << "Vehicle not found." << endl;
     }
-    else if (choice == 2) {
+    else if (choice == 2)
+    {
         string searchName;
         cout << "Enter Owner Name: ";
         getline(cin, searchName);
 
         bool found = false;
-        for (int i = 0; i < vehicleCount; i++) {
-            if (vehicles[i].owner == searchName) {
+        for (int i = 0; i < vehicleCount; i++)
+        {
+            if (vehicles[i].owner == searchName)
+            {
                 cout << "Vehicle Found: " << endl;
                 cout << "ID: " << vehicles[i].id << endl;
                 cout << "Owner: " << vehicles[i].owner << endl;
@@ -240,16 +300,20 @@ void searchVehicle() {
                 break;
             }
         }
-        if (!found) cout << "Vehicle not found." << endl;
+        if (!found)
+            cout << "Vehicle not found." << endl;
     }
-    else if (choice == 3) {
+    else if (choice == 3)
+    {
         string searchPlate;
         cout << "Enter License Plate: ";
         getline(cin, searchPlate);
 
         bool found = false;
-        for (int i = 0; i < vehicleCount; i++) {
-            if (vehicles[i].licensePlate == searchPlate) {
+        for (int i = 0; i < vehicleCount; i++)
+        {
+            if (vehicles[i].licensePlate == searchPlate)
+            {
                 cout << "Vehicle Found: " << endl;
                 cout << "ID: " << vehicles[i].id << endl;
                 cout << "Owner: " << vehicles[i].owner << endl;
@@ -260,16 +324,20 @@ void searchVehicle() {
                 break;
             }
         }
-        if (!found) cout << "Vehicle not found." << endl;
+        if (!found)
+            cout << "Vehicle not found." << endl;
     }
-    else {
+    else
+    {
         cout << "Invalid search option." << endl;
     }
 }
 
-void saveVehiclesToFile() {
+void saveVehiclesToFile()
+{
     ofstream file("vehicles.txt");
-    for (int i = 0; i < vehicleCount; i++) {
+    for (int i = 0; i < vehicleCount; i++)
+    {
         file << vehicles[i].id << " "
              << vehicles[i].owner << " "
              << vehicles[i].type << " "
@@ -279,22 +347,24 @@ void saveVehiclesToFile() {
     file.close();
 }
 
-void loadVehiclesFromFile() {
+void loadVehiclesFromFile()
+{
     ifstream file("vehicles.txt");
     vehicleCount = 0;
-    while (file >> vehicles[vehicleCount].id) {
+    while (file >> vehicles[vehicleCount].id)
+    {
         file.ignore();
         getline(file, vehicles[vehicleCount].owner, ' ');
-        file >> vehicles[vehicleCount].type
-             >> vehicles[vehicleCount].licensePlate
-             >> vehicles[vehicleCount].registrationDate;
+        file >> vehicles[vehicleCount].type >> vehicles[vehicleCount].licensePlate >> vehicles[vehicleCount].registrationDate;
         vehicleCount++;
     }
     file.close();
 }
 
-void trackViolations() {
-    if (violationCount >= max_violations) {
+void trackViolations()
+{
+    if (violationCount >= max_violations)
+    {
         cout << "Violation storage is full!" << endl;
         return;
     }
@@ -316,9 +386,11 @@ void trackViolations() {
     cout << "Violation recorded successfully!" << endl;
 }
 
-void saveViolationsToFile() {
+void saveViolationsToFile()
+{
     ofstream file("violations.txt");
-    for (int i = 0; i < violationCount; i++) {
+    for (int i = 0; i < violationCount; i++)
+    {
         file << violations[i].id << " "
              << violations[i].vehicleId << " "
              << violations[i].type << " "
@@ -328,10 +400,12 @@ void saveViolationsToFile() {
     file.close();
 }
 
-void loadViolationsFromFile() {
+void loadViolationsFromFile()
+{
     ifstream file("violations.txt");
     violationCount = 0;
-    while (file >> violations[violationCount].id) {
+    while (file >> violations[violationCount].id)
+    {
         file >> violations[violationCount].vehicleId;
         file.ignore();
         getline(file, violations[violationCount].type, ' ');
@@ -342,7 +416,8 @@ void loadViolationsFromFile() {
     file.close();
 }
 
-void viewTrafficReports() {
+void viewTrafficReports()
+{
     cout << "--- Traffic Reports ---" << endl;
 
     cout << "1. Total Vehicles Registered: " << vehicleCount << endl;
@@ -351,11 +426,15 @@ void viewTrafficReports() {
     int overSpeedingCount = 0, signalJumpingCount = 0, illegalParkingCount = 0;
     double totalFines = 0;
 
-    for (int i = 0; i < violationCount; i++) {
+    for (int i = 0; i < violationCount; i++)
+    {
         totalFines += violations[i].fineAmount;
-        if (violations[i].type == "Over-Speeding") overSpeedingCount++;
-        else if (violations[i].type == "Signal Jumping") signalJumpingCount++;
-        else if (violations[i].type == "Illegal Parking") illegalParkingCount++;
+        if (violations[i].type == "Over-Speeding")
+            overSpeedingCount++;
+        else if (violations[i].type == "Signal Jumping")
+            signalJumpingCount++;
+        else if (violations[i].type == "Illegal Parking")
+            illegalParkingCount++;
     }
 
     cout << "   a. Over-Speeding Violations: " << overSpeedingCount << endl;
@@ -364,15 +443,18 @@ void viewTrafficReports() {
     cout << "   d. Total Fines Collected: $" << fixed << setprecision(2) << totalFines << endl;
 
     cout << "3. Traffic Density (Simulation):" << endl;
-    for (int i = 0; i < max_intersections; i++) {
-        string density = (timers[i] < 5) ? "Low" : (timers[i] < 10) ? "Moderate" : "High";
+    for (int i = 0; i < max_intersections; i++)
+    {
+        string density = (timers[i] < 5) ? "Low" : (timers[i] < 10) ? "Moderate"
+                                                                    : "High";
         cout << "   Intersection " << i + 1 << ": " << density << endl;
     }
 
     cout << "Reports generated successfully!" << endl;
 }
 
-void emergencyVehicleAssistance() {
+void emergencyVehicleAssistance()
+{
     cout << "--- Emergency Vehicle Assistance ---" << endl;
 
     int start, destination;
@@ -381,14 +463,16 @@ void emergencyVehicleAssistance() {
     cout << "Enter destination intersection (1 to " << max_intersections << "): ";
     cin >> destination;
 
-    if (start < 1 || start > max_intersections || destination < 1 || destination > max_intersections) {
+    if (start < 1 || start > max_intersections || destination < 1 || destination > max_intersections)
+    {
         cout << "Invalid intersections. Please enter values between 1 and " << max_intersections << "." << endl;
         return;
     }
 
     cout << "Prioritizing traffic lights along the route..." << endl;
 
-    for (int i = start - 1; i < destination; i++) {
+    for (int i = start - 1; i < destination; i++)
+    {
         intersections[i] = GREEN;
         cout << "Intersection " << i + 1 << " light turned GREEN for emergency vehicle." << endl;
     }
