@@ -168,7 +168,7 @@ void registerVehicle()
 {
     if (vehicleCount >= max_veh)
     {
-        cout << "Vehicle storage is full!!!!" << endl;
+        cout << "Vehicle storage is full!!" << endl;
         return;
     }
 
