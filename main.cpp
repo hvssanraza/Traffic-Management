@@ -395,7 +395,7 @@ void saveViolationsToFile()
              << violations[i].vehicleId << " "
              << violations[i].type << " "
              << violations[i].dateTime << " "
-             << violations[i].fineAmount << endl;
+             << violations[i].fineAmount<<endl;
     }
     file.close();
 }
