@@ -217,7 +217,7 @@ void realTimeTrafficMonitoring()
             break;
     }
 }
-//Edit by Abdullah
+
 void searchMenu()
 {
     int choice;
