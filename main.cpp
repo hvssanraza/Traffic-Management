@@ -163,7 +163,7 @@ void manageTrafficLights()
             break;
     }
 }
-//Coded by Talha
+
 void registerVehicle()
 {
     if (vehicleCount >= max_veh)
@@ -243,7 +243,7 @@ void searchMenu()
         cout << "Invalid choice. Returning to the dashboard." << endl;
     }
 }
-//Editted by Abdullah
+
 void searchVehicle()
 {
     int choice;
