@@ -163,7 +163,7 @@ void manageTrafficLights()
             break;
     }
 }
-//Coded by Talha
+
 void registerVehicle()
 {
     if (vehicleCount >= max_veh)
@@ -395,7 +395,7 @@ void saveViolationsToFile()
              << violations[i].vehicleId << " "
              << violations[i].type << " "
              << violations[i].dateTime << " "
-             << violations[i].fineAmount << endl;
+             << violations[i].fineAmount<<endl;
     }
     file.close();
 }
