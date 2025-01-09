@@ -168,14 +168,14 @@ void registerVehicle()
 {
     if (vehicleCount >= max_veh)
     {
-        cout << "Vehicle storage is full!" << endl;
+        cout << "Vehicle storage is full!!!!" << endl;
         return;
     }
 
     cout << "--- Register Vehicle ---" << endl;
     Vehicle newVehicle;
     newVehicle.id = vehicleCount + 1;
-    cout << "Enter owner name: ";
+    cout << "Enter owner's name: ";
     cin.ignore();
     getline(cin, newVehicle.owner);
     cout << "Enter vehicle type: ";
@@ -217,7 +217,7 @@ void realTimeTrafficMonitoring()
             break;
     }
 }
-
+//Edit by Abdullah
 void searchMenu()
 {
     int choice;
